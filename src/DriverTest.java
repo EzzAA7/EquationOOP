@@ -1,3 +1,5 @@
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.LinkedList;
@@ -8,90 +10,68 @@ public class DriverTest {
 
     @Test
     public void CorrectResultOfSimpleTerms() {
-        TermInterface t1 = new SimpleTerm(1,5);
-        TermInterface t2 = new SimpleTerm(2,4);
-        TermInterface t3 = new SimpleTerm(5,3);
-        LinkedList<TermInterface> myTerms1 = new LinkedList<>();
+
+        LinkedList<Scalar> myTerms1 = new LinkedList<>();
         PolySimpleInterface p = new Poly(myTerms1);
+        p.add(new SimpleTerm(1,5));
+        p.add(new SimpleTerm(2,4));
+        p.add(new SimpleTerm(5,3));
 
-        p.add(t1);
-        p.add(t2);
-        p.add(t3);
-
-        p.calculateEvaluation(3);
-        assertEquals( 540.0, p.getResult(), 1);
+        assertEquals( 540.0, p.eval(3), 1);
 
     }
 
     @Test
     public void CorrectResultOfComplexTerms() {
-        TermInterface t4 = new CosTerm(40);
-        LinkedList<TermInterface> myTerms1 = new LinkedList<>();
+        LinkedList<Scalar> myTerms1 = new LinkedList<>();
         PolySimpleInterface p = new Poly(myTerms1);
+        p.add(new CosTerm(40));
 
-        p.add(t4);
-
-        p.calculateEvaluation(3);
-        assertEquals( -40.0, p.getResult(), 1);
+        assertEquals( -40.0, p.eval(3), 1);
 
     }
 
     @Test
     public void CorrectResultOfSimpleAndComplexTerms() {
-        TermInterface t3 = new SimpleTerm(5,3);
-        TermInterface t4 = new CosTerm(40);
-        LinkedList<TermInterface> myTerms1 = new LinkedList<>();
+        LinkedList<Scalar> myTerms1 = new LinkedList<>();
         PolySimpleInterface p = new Poly(myTerms1);
+        p.add(new SimpleTerm(5,3));
+        p.add(new CosTerm(40));
 
-        p.add(t3);
-        p.add(t4);
-
-        p.calculateEvaluation(3);
-        assertEquals( 95.0, p.getResult(), 1);
+        assertEquals( 95.0, p.eval(3), 1);
 
     }
 
     @Test
     public void CorrectResultOfMulTerms() {
-        TermInterface t5 = new SimpleTerm(2,4);
-        TermInterface t6 = new SimpleTerm(5,3);
-        LinkedList<TermInterface> myTerms2 = new LinkedList<>();
-        PolySimpleInterface mul = new MultiplyTerm(myTerms2);
+        LinkedList<Scalar> myTerms1 = new LinkedList<>();
+        PolySimpleInterface mul = new MultiplyTerm(myTerms1);
 
-        mul.add(t5);
-        mul.add(t6);
+        mul.add(new SimpleTerm(2,4));
+        mul.add(new SimpleTerm(5,3));
 
-        mul.calculateEvaluation(3);
-        assertEquals( 21870.0, mul.getResult(), 1);
+        assertEquals( 21870.0, mul.eval(3), 1);
 
     }
 
-//    @Test
-//    public void CorrectResultOfMixedTerms() {
-//        TermInterface t1 = new SimpleTerm(1,5);
-//        TermInterface t2 = new SimpleTerm(2,4);
-//        TermInterface t3 = new SimpleTerm(5,3);
-//        TermInterface t4 = new CosTerm(40);
-//        LinkedList<TermInterface> myTerms1 = new LinkedList<>();
-//        PolySimpleInterface p = new Poly(myTerms1);
-//
-//        p.add(t1);
-//        p.add(t2);
-//        p.add(t3);
-//        p.add(t4);
-//
-//        TermInterface t5 = new SimpleTerm(2,4);
-//        TermInterface t6 = new SimpleTerm(5,3);
-//        LinkedList<TermInterface> myTerms2 = new LinkedList<>();
-//        PolySimpleInterface mul = new MultiplyTerm(myTerms2);
-//
-//        mul.add(t5);
-//        mul.add(t6);
-//        p.add(mul);
-//
-//        mul.calculateEvaluation(3);
-//        assertEquals( 21870.0, mul.getResult(), 1);
-//
-//    }
+    @Test
+    public void CorrectResultOfMixedTerms() {
+        LinkedList<Scalar> myTerms1 = new LinkedList<>();
+        PolySimpleInterface p = new Poly(myTerms1);
+        p.add(new SimpleTerm(1,5));
+        p.add(new SimpleTerm(2,4));
+        p.add(new SimpleTerm(5,3));
+        p.add(new CosTerm(40));
+
+        LinkedList<Scalar> myTerms2 = new LinkedList<>();
+        PolySimpleInterface mul = new MultiplyTerm(myTerms2);
+
+        mul.add(new SimpleTerm(2,4));
+        mul.add(new SimpleTerm(5,3));
+        p.add(mul);
+
+        assertEquals( 22370, p.eval(3), 1);
+
+    }
 
 }

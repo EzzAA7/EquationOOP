@@ -1,8 +1,9 @@
-public interface PolySimpleInterface {
+public interface PolySimpleInterface extends Scalar{
 
     void calculateEvaluation(int val);
 
-    void add(TermInterface t1);
+    void add(Scalar t1);
 
-    float getResult();
+    float eval(int val);
+
 }

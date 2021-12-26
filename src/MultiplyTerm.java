@@ -1,7 +1,7 @@
 import java.util.LinkedList;
 
 public class MultiplyTerm extends SimplePoly implements PolySimpleInterface{
-    public MultiplyTerm(LinkedList<TermInterface> terms) {
+    public MultiplyTerm(LinkedList<Scalar> terms) {
 
         super(terms);
     }
@@ -9,7 +9,7 @@ public class MultiplyTerm extends SimplePoly implements PolySimpleInterface{
     @Override
     public void calculateEvaluation(int val) {
         float result = 1;
-        for (TermInterface term: this.getTerms()) {
+        for (Scalar term: this.getTerms()) {
             result *= term.eval(val);
         }
 
@@ -17,13 +17,14 @@ public class MultiplyTerm extends SimplePoly implements PolySimpleInterface{
     }
 
     @Override
-    public void add(TermInterface t1) {
-        this.getTerms().add(t1);
+    public void add(Scalar s1) {
+
+        this.getTerms().add(s1);
     }
 
     @Override
-    public float getResult() {
-
+    public float eval(int val) {
+        this.calculateEvaluation(val);
         return this.getEvaluation();
     }
 }

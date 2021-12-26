@@ -11,6 +11,7 @@ public class SimpleTerm extends Term implements TermInterface{
     }
 
     public void setExpo(int expo) {
+
         this.expo = expo;
     }
 

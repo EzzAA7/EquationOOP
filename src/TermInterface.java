@@ -1,4 +1,3 @@
-public interface TermInterface {
-
+public interface TermInterface extends Scalar{
     float eval(int val);
 }
