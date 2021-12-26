@@ -2,8 +2,9 @@ import java.util.LinkedList;
 
 public class Poly extends SimplePoly implements PolySimpleInterface{
 
-    public Poly(LinkedList<Scalar> terms) {
-        super(terms);
+    public Poly() {
+
+        super();
     }
 
     @Override

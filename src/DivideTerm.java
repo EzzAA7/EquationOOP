@@ -5,9 +5,9 @@ public class DivideTerm implements PolyComplexInterface{
     private LinkedList<Scalar> dividend;
     private float evaluation;
 
-    public DivideTerm(LinkedList<Scalar> divider, LinkedList<Scalar> dividend) {
-        this.divider = divider;
-        this.dividend = dividend;
+    public DivideTerm() {
+        this.divider = new LinkedList<>();
+        this.dividend = new LinkedList<>();
         this.evaluation = 0;
     }
 

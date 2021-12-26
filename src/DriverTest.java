@@ -12,7 +12,7 @@ public class DriverTest {
     public void CorrectResultOfSimpleTerms() {
 
         LinkedList<Scalar> myTerms1 = new LinkedList<>();
-        PolySimpleInterface p = new Poly(myTerms1);
+        PolySimpleInterface p = new Poly();
         p.add(new SimpleTerm(1,5));
         p.add(new SimpleTerm(2,4));
         p.add(new SimpleTerm(5,3));
@@ -23,8 +23,7 @@ public class DriverTest {
 
     @Test
     public void CorrectResultOfComplexTerms() {
-        LinkedList<Scalar> myTerms1 = new LinkedList<>();
-        PolySimpleInterface p = new Poly(myTerms1);
+        PolySimpleInterface p = new Poly();
         p.add(new CosTerm(40));
 
         assertEquals( -40.0, p.eval(3), 1);
@@ -33,8 +32,7 @@ public class DriverTest {
 
     @Test
     public void CorrectResultOfSimpleAndComplexTerms() {
-        LinkedList<Scalar> myTerms1 = new LinkedList<>();
-        PolySimpleInterface p = new Poly(myTerms1);
+        PolySimpleInterface p = new Poly();
         p.add(new SimpleTerm(5,3));
         p.add(new CosTerm(40));
 
@@ -44,8 +42,7 @@ public class DriverTest {
 
     @Test
     public void CorrectResultOfMulTerms() {
-        LinkedList<Scalar> myTerms1 = new LinkedList<>();
-        PolySimpleInterface mul = new MultiplyTerm(myTerms1);
+        PolySimpleInterface mul = new MultiplyTerm();
 
         mul.add(new SimpleTerm(2,4));
         mul.add(new SimpleTerm(5,3));
@@ -56,15 +53,13 @@ public class DriverTest {
 
     @Test
     public void CorrectResultOfSimpleAndMulTerms() {
-        LinkedList<Scalar> myTerms1 = new LinkedList<>();
-        PolySimpleInterface p = new Poly(myTerms1);
+        PolySimpleInterface p = new Poly();
         p.add(new SimpleTerm(1,5));
         p.add(new SimpleTerm(2,4));
         p.add(new SimpleTerm(5,3));
         p.add(new CosTerm(40));
 
-        LinkedList<Scalar> myTerms2 = new LinkedList<>();
-        PolySimpleInterface mul = new MultiplyTerm(myTerms2);
+        PolySimpleInterface mul = new MultiplyTerm();
 
         mul.add(new SimpleTerm(2,4));
         mul.add(new SimpleTerm(5,3));
@@ -76,7 +71,7 @@ public class DriverTest {
 
     @Test
     public void CorrectResultOfAddPolytoPolyTerms() {
-        PolySimpleInterface p1 = new Poly(new LinkedList<>());
+        PolySimpleInterface p1 = new Poly();
         p1.add(new SimpleTerm(1,5));
         p1.add(new SimpleTerm(2,4));
         p1.add(new SimpleTerm(5,3));
@@ -84,7 +79,7 @@ public class DriverTest {
         assertEquals( 500, p1.eval(3), 1);
 //        System.out.println(p1.eval(3));
 
-        PolySimpleInterface p2 = new Poly(new LinkedList<>());
+        PolySimpleInterface p2 = new Poly();
 
         p2.add(new SimpleTerm(2,4));
         p2.add(new SimpleTerm(5,3));
@@ -97,21 +92,20 @@ public class DriverTest {
 
     @Test
     public void CorrectResultOfDividedPolyTerms() {
-        PolySimpleInterface p1 = new Poly(new LinkedList<>());
+        PolySimpleInterface p1 = new Poly();
         p1.add(new SimpleTerm(1,5));
         p1.add(new SimpleTerm(2,4));
         p1.add(new SimpleTerm(5,3));
         p1.add(new CosTerm(40));
         assertEquals( 500, p1.eval(3), 1);
 
-        LinkedList<Scalar> myTerms2 = new LinkedList<>();
-        PolySimpleInterface p2 = new Poly(myTerms2);
+        PolySimpleInterface p2 = new Poly();
 
         p2.add(new SimpleTerm(2,4));
         p2.add(new SimpleTerm(5,3));
         assertEquals( 297, p2.eval(3), 1);
 
-        PolyComplexInterface p3 = new DivideTerm(new LinkedList<>(), new LinkedList<>());
+        PolyComplexInterface p3 = new DivideTerm();
         p3.addToDivider(p1);
         p3.addToDividend(p2);
         assertEquals( 1.6, p3.eval(3), 1);

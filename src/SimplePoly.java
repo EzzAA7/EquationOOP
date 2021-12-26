@@ -4,8 +4,8 @@ public class SimplePoly {
     private LinkedList<Scalar> terms;
     private float evaluation;
 
-    public SimplePoly(LinkedList<Scalar> terms) {
-        this.terms = terms;
+    public SimplePoly() {
+        this.terms = new LinkedList<>();
         this.evaluation = 0;
     }
 

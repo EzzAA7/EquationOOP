@@ -1,9 +1,9 @@
 import java.util.LinkedList;
 
 public class MultiplyTerm extends SimplePoly implements PolySimpleInterface{
-    public MultiplyTerm(LinkedList<Scalar> terms) {
+    public MultiplyTerm() {
 
-        super(terms);
+        super();
     }
 
     @Override
