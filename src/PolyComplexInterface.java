@@ -5,7 +5,4 @@ public interface PolyComplexInterface extends Scalar{
     void addToDivider(Scalar t1);
 
     void addToDividend(Scalar t1);
-
-    float eval(int val);
-
 }
